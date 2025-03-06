@@ -35,12 +35,14 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 app.use("/api", routes);
 
-app.use(routeNotFound);
-app.use(errorHandler);
-
 app.use(express.static(path.join(__dirname, '/client/dist')))
 app.get("*", (req, res) => 
   res.sendFile(path.join(__dirname, "/client/dist/index.html"))
 );
+
+app.use(routeNotFound);
+app.use(errorHandler);
+
+
 
 app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
